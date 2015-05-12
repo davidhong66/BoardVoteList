@@ -1,0 +1,24 @@
+<?php
+$title = 'Delete item';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>Are you sure that you want to delete
+    <strong>Item # '<?php echo (int)$this->id ?> <?php echo $this->escapeHtml($item->benificiary) ?>'</strong>?
+</p>
+<?php
+$url =$this->url('item',array(
+    'action' =>'delete',
+    'id'=> $this->id,
+));
+//var_dump($url);die('adfdaf');exit();
+?>
+<form action="<?php echo $url; ?>" method="post">
+    <div>
+        <input type="hidden" name="id" value="<?php echo (int) $item->id; ?>" />
+        <input type="submit" name="del" value="Yes"/>
+        <input type="submit" name="del" value="No"/>
+    </div>
+
+
+</form>

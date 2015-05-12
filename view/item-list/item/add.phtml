@@ -1,0 +1,24 @@
+<?php
+
+$title = 'Add new item';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<?php
+$form->setAttribute('action',$this->url('item', array('action'=>'add')));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('id'));
+//echo $this->formRow($this->get('gender'));
+
+echo $this->formRow($form->get('nature'));
+print '<br />';
+echo $this->formRow($form->get('benificiary'));
+print '<br />';
+echo $this->formRow($form->get('purpose'));
+print '<hr />';
+echo $this->formRow($form->get('pi_rationale'));
+print '<hr />';
+print '<hr />';echo $this->formSubmit($form->get('submit'));
+echo $this->form()->closeTag();

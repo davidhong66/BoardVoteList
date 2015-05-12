@@ -1,0 +1,35 @@
+<?php
+
+$title = 'Edit Item';
+$this->headTitle($title);
+?>
+
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url(
+        'item',
+        array(
+            'action'=>'edit',
+            'id'    =>$this->id,
+        )
+));
+$form->prepare();
+
+echo '<h2>'.$this->escapeHtml($title).' #'.$this->id.'</h2>';
+
+echo $this->form()->openTag($form);
+
+echo $this->formHidden($form->get('id'));
+echo $this->formRow($form->get('nature'));
+print '<br /><br />';
+
+echo $this->formRow($form->get('benificiary'));
+print '<br /><br />';
+echo $this->formRow($form->get('pi_rationale'));
+print '<hr />';
+echo $this->formRow($form->get('purpose'));
+print '<hr />';
+
+echo $this->formSubmit($form->get('submit'));
+echo '<p>'.$this->form()->closeTag().'</p>';
+

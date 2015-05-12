@@ -1,0 +1,52 @@
+<?php
+$title ='GRANT CYCLE 02-13-2015: Vote Items';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<p>
+    <a href="<?php
+    //edited on 5/1/2015
+    echo $this->url('item', array('action'=>'add')); 
+    //echo '#';
+    ?>" class="btn btn-success">Add a board vote item</a>
+</p>
+
+<?php
+
+$table_html ='';
+foreach ($this->paginator as $item) {
+    $table_html.="<center><table class='table' width='95%'>";
+        foreach($item->contents as $key=>$val) {
+            if(!empty($val) && $key !='submit'){
+                if(strpos($key,'date')!==false && $val >10){
+                    $val = date('F j, Y', $val);
+                }   
+                if($val=='1') {$val = 'Yes';}
+                    $outkey = ucwords(str_replace(array('_', 'pi'), array(' ',''),$key));
+                    $table_html.= "<tr><td width='25%' align='right'><strong>".$this->escapeHtml($outkey)."</strong></td>"
+                            . "<td align='left'>".($val)."</td></tr>";
+            }
+        }
+        $table_html.="<tr><td colspan='2' align='center'>"
+                . "<a href='".$this->url('item', array('action'=>'edit','id'=>$item->id))."' class='btn btn-primary'>Edit</a>
+	         <a href='".$this->url('item', array('action'=>'delete', 'id'=>$item->id))."' class='btn btn-danger'>Delete</a></td></tr>";
+		//Edit link: ".$this->url('item', array('action'=>'edit','id'=>$item->id))."
+		//Delete link: ".$this->url('item', array('action'=>'delete', 'id'=>$item->id))."
+        $table_html.="</table></center><hr />";
+}
+
+
+echo $table_html;
+
+echo $this->paginationControl(
+        $this->paginator,
+        'sliding',
+        array('partial/paginator.phtml','Item'),
+        array(
+            'route'=>'item'
+        )
+);
+
+
+?>
