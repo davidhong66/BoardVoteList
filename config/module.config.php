@@ -30,10 +30,3 @@ return array(
     ),
 
 );
-
-    // Controller namespace to template map
-    // or whitelisting for controller FQCN to template mapping
-            //'<module-namespace>\Controller\Index' =>
-            //'<module-namespace>\Controller\IndexController',
-            // Do similar for each other controller in your module
-            // ... other configuration ...
